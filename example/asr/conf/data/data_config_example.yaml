@@ -1,0 +1,24 @@
+clean_source:
+  1:    
+    text: 
+        type: label_text
+        path: data/train_nodup_sp/token
+        dim: 3655
+    feats: 
+        type: mat
+        path: dump/train_nodup_sp/deltafalse/feats.scp
+        length: dump/train_nodup_sp/deltafalse/feats.lengths
+        dim: 83
+    
+valid_source:
+  1:
+    text: 
+        type: label_text
+        path: data/train_dev/token  
+        dim: 3655
+    feats: 
+        type: mat
+        path: dump/train_dev/deltafalse/feats.scp
+        length: dump/train_dev/deltafalse/feats.lengths
+        dim: 83
+        # sr: 16000

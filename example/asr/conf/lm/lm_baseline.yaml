@@ -1,0 +1,21 @@
+data_set_config:
+    data_type: text
+    label_dict: './data/lang_1char/train_nodup_sp_units.txt'
+    batch_size: 128
+    max_len: 100
+    sort: True
+criterion_config:
+    name: 'eteh.models.lm.lm_loss:LM_Loss'
+    padding_idx: -1
+opti_config:
+    name: 'torch.optim:SGD'
+    lr: 1.0
+model_config:
+    name: 'eteh.models.lm.lm_rnn_trans:RNNLM'
+    n_vocab: 3655
+    n_layers: 2
+    n_units: 650
+train_config:
+    char_num: 3655
+    accum_grad: 1
+    amp: False

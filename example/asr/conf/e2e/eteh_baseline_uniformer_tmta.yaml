@@ -1,0 +1,91 @@
+data_set_config:
+    data_type: kaldi
+    label_dict: ?
+    unk: '<unk>'
+    space: ' '
+    eos_key: '<eos>'
+    jconfig:
+        batch_size: 64
+        max_length_in: 512
+        max_length_out: 150
+        num_batches: 0
+        min_batch_size: 1
+        shortest_first: True
+        batch_sort_key: "feats"
+        swap_io: False
+        count: "seq"
+        batch_bins: 5992000
+        batch_frames_in: 0
+        batch_frames_out: 0
+        batch_frames_inout: 0
+        clean_data: False
+        
+train_process_config:
+  # these three processes are a.k.a. SpecAugument
+    feats:
+      - type: "time_warp"
+        max_time_warp: 5
+        inplace: true
+        mode: "PIL"
+      - type: "freq_mask"
+        F: 30
+        n_mask: 2
+        inplace: true
+        replace_with_zero: false
+      - type: "time_mask"
+        T: 40
+        n_mask: 2
+        inplace: true
+        replace_with_zero: false
+
+
+valid_process_config: false
+        
+opti_config:
+    name: 'eteh.modules.pytorch_backend.optimizer.optimizer:Noam'
+    factor: 1
+    warm_step: 25000
+    model_size: 320
+    
+criterion_config:
+    name: 'eteh.models.e2e_ctc_att.e2e_loss_univ:CTC_CE_Univ_Loss'
+    size: ?
+    padding_idx: -1
+    smoothing: 0.1
+    rate: 0.3
+    kl_rate: 1.0
+    ali_rate: 5.0
+    
+model_config:
+    name: 'eteh.models.e2e_ctc_att.e2e_transformer_online_offline:E2E_Transformer_CTC_Univ_Dynamic'
+    idim: ?
+    odim: ?
+    encoder_attention_dim: 320
+    encoder_attention_heads: 8
+    encoder_linear_units: 2048
+    encoder_num_blocks: 17
+    encoder_input_layer: conv2d
+    encoder_dropout_rate: 0.1
+    encoder_attention_dropout_rate: 0
+    decoder_attention_dim: 320
+    decoder_self_attention_heads: 8
+    decoder_src_attention_heads: 1
+    decoder_linear_units: 2048
+    decoder_input_layer: embed
+    decoder_num_block: 6
+    decoder_dropout_rate: 0.1
+    decoder_src_attention_dropout_rate: 0
+    decoder_self_attention_dropout_rate: 0
+    ctc_dropout: 0.1    
+    
+train_config:
+    char_num: ?
+    accum_grad: 2 #must be 1 when amp is used
+    amp: False
+    
+decode_config:
+    beam: 10
+    ctc_beam: 15
+    lm_rate: 0.3
+    ctc_weight: 0.5
+    char_num: ?

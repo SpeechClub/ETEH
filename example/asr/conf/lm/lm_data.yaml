@@ -1,0 +1,12 @@
+clean_source:
+  1:    
+    type: HKUST
+    path: ./data/local/lm_train/train.txt
+
+valid_source:
+  1:
+   type: HKUST
+   path: ./data/local/lm_train/valid.txt
+
+
+
