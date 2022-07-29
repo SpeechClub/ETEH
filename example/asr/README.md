@@ -9,7 +9,9 @@ Using Uniformer and TSE, you can build a unified E2E ASR and KWS architecture, w
 
 `run_asr_pipeline.sh` is the pipeline of building and testing a Standard CTC/attention E2E ASR system, including data & config preparation, training, decoding, and scoring. Please use this as a basic recipe example for building a ASR system using ETEH.
 
-`run_uniformer.sh` is the pipeline of building and testing Uniformer E2E ASR systems, including MTA uniformer and TMTA uniformer [[Cheng, et al., 2022]](https://ieeexplore.ieee.org/document/9739972).
+`run_uniformer.sh` is the pipeline of building and testing Uniformer E2E ASR systems, including MTA uniformer and TMTA uniformer [[Cheng, et al., 2022]](https://ieeexplore.ieee.org/document/9739972).[^1]
+
+[^1]: When training a Uniformer, you may consider not computing the KL loss between online and offline mode CTC outputs. Restricting these two CTC outputs may lead to bad convergence when training on large data or real-world data. For details, see `../../eteh/models/e2e_ctc_att/e2e_loss_univ.py`.
 
 `run_tse_kws.sh` is the pipeline of building and testing a TSE-based KWS system, given a well-trained CTC/attention E2E ASR system.
 
