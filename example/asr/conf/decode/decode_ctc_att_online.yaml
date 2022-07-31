@@ -1,0 +1,5 @@
+decode_method: ctc_att_online
+beam: 10
+ctc_beam: 15
+lm_rate: 0.3
+ctc_weight: 0.5
