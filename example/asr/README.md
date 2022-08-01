@@ -20,8 +20,10 @@ We use the HKUST corpus as an example in these scripts. Here is the ASR performa
 ||offline decoding WER(%)|online decoding WER(%)|
 |:-:|:-:|:-:|
 |eteh_baseline|20.8|\-|
-|eteh_baseline_uniformer_mta|20.6||
-|eteh_baseline_uniformer_tmta|||
+|eteh_baseline_uniformer_mta|20.1|22.7|
+|eteh_baseline_uniformer_tmta|20.8||
+
+
 
 ## Run an example: run_asr_pipeline.sh
 
@@ -67,12 +69,12 @@ In this stage, we average the best 10 checkpoints with regards to "att_corr" on 
 
 The language model used decoding is trained in `../lm`. 
 
-By default, offline mode decoding will be performed. To perform online mode decoding please add `-online` flag to `${PLAT_ROOT}/bin/decode.py`.
+By default, offline mode decoding will be performed. To perform online mode decoding please use decode config `conf/decode/decode_ctc_att_online.yaml`.
 
-Decoding results will be saved as `$output_file`.
+Decoding results will be saved to `$exp_dir/decode/$output_file`.
 
 ### Stage 4: Scoring
-Score the hypotheses `$output_file` using reference `$ref_file` 
+Score the hypotheses in `$exp_dir/decode/$output_file` using references in `$ref_file` 
 
 ## Citations
 ```
