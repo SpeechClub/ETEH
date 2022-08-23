@@ -1,4 +1,4 @@
-The baseline system is developed using ETEH. 
+The baseline system of Magichub Code-Switching ASR Challenge is developed using [ETEH](https://github.com/SpeechClub/ETEH). 
 
 ## Model Architecture
 For the model architecture, we use Transformer. We use a 2-layer convolutional neural network (CNN) as the front-end. Each CNN layer has 320 filters, each of which has 3x3 kernel size with 2x2 stride. The self-attention encoder and decoder are 17-layer and 6-layer, respectively. All sub-layers, as well as embedding layers, produce outputs of dimension 320. In the multi-head attention networks, the head number is 8. The inner dimension of position-wise feed-forward networks is 2,048. All the ASR models are trained with batch size 512, using Adam algorithm with gradient clipping norm 5, warm-up of 25,000 steps, and Noam learning rate decay scheme. 
