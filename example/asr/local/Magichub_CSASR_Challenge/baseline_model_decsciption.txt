@@ -7,10 +7,10 @@ Training Dataset and Features
 We combine the MagicData-RAMC Train and TAL_CSASR Train as the training dataset for the baseline ASR model. We use 83-dimensional features, which include 80-dimensional filter banks and 3-dimensional pitch features, as input acoustic features. Features are extracted with a 25ms Hamming window, shifted every 10ms. We DO NOT apply CMVN to the acoustic features.
 
 Output Targets
-The ASR model predicts subword units based on byte pair encoding (BPE) for English and Chinese characters for Mandarin as output targets. There are 5,276 output targets in total, among which 1,007 are English subword units (including special symbols) and 4,269 are Chinese characters. We train the ASR model for 30 epochs.
+The ASR model predicts subword units based on byte pair encoding (BPE) for English and Chinese characters for Mandarin as output targets. There are 5,276 output targets in total, of which 1,007 are English subword units (including special symbols) and 4,269 are Chinese characters. We train the ASR model for 30 epochs.
 
 
-Dev Set Data Pre-process
+Dev Set Data Pre-processing
 Please refer to "dev_data_preprocess.sh" for details.
 
 Dev Set Scoring
@@ -18,7 +18,7 @@ Please refer to "dev_scoring_sclite.sh" for details.
 
 Baseline Model Performance
 MER: 29.2%
-Scoring details:
+Other scoring details:
    ,-----------------------------------------------------------------------.
    |        exp/talcs_magic_160/eteh_baseline/decode/hyp.dev.gb.txt        |
    |-----------------------------------------------------------------------|
