@@ -18,6 +18,7 @@ Please refer to "dev_scoring_sclite.sh" for details.
 
 ## Baseline Model Performance
 MER: 29.2%
+
 Other scoring details:
 >   ,-----------------------------------------------------------------------.
 >   |        exp/talcs_magic_160/eteh_baseline/decode/hyp.dev.gb.txt        |
