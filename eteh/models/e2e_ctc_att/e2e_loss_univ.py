@@ -26,7 +26,7 @@ class CTC_CE_Univ_Loss(E2E_Loss):
         ctc_loss_off = self.ctc_loss(
             ctc_out_off, ctc_len, ctc_label)
         ctc_mask = (make_pad_mask(ctc_len.tolist(), max_length=ctc_out.size(1))).to(ctc_out.device)
-        kl_loss += self.kl_loss(ctc_out, ctc_out_off, ctc_mask) # You may consider removing this KL loss between online and offline mode CTC outputs. Restricting these two CTC outputs may leads to bad convergence when training on large data or read-world data.
+        kl_loss += self.kl_loss(ctc_out, ctc_out_off, ctc_mask) # You may consider removing this KL loss. Restricting online and offline mode CTC outputs may leads to bad convergence when training on large data or read-world data.
         ali_loss = self.ali_loss(ali_out, label_beg, label_end, ctc_mask, ctc_out_off, ctc_label, ctc_len) \
             if label_beg is not None else att_loss.new_zeros(att_loss.size())
         return (1 - self.rate) * (att_loss + att_loss_off) \
